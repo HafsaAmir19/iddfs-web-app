@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize variables
     const gridElement = document.getElementById('grid');
     const statusMessage = document.getElementById('status-message');
     const findPathBtn = document.getElementById('findPathBtn');
@@ -11,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPath = [];
     let cellElements = [];
     
-    // Fetch the grid data from the server
+
     async function fetchGrid() {
         try {
             const response = await fetch('/get_grid');
@@ -25,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Render the grid based on the grid data
+    
     function renderGrid() {
         gridElement.innerHTML = '';
         cellElements = [];
@@ -46,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cellElements.push(rowElements);
         }
         
-        // Restore any previously set start and goal positions
+        
         if (startPos !== null) {
             updateCellClass(startPos[0], startPos[1], 'start');
         }
@@ -57,11 +56,11 @@ document.addEventListener('DOMContentLoaded', function() {
         updateStatusMessage();
     }
     
-    // Update the class of a cell without removing its base class (free/obstacle)
+    
     function updateCellClass(row, col, className) {
         const cell = cellElements[row][col];
         
-        // First remove special classes but keep the base class
+       
         if (cell.classList.contains('start')) cell.classList.remove('start');
         if (cell.classList.contains('goal')) cell.classList.remove('goal');
         if (cell.classList.contains('path')) {
@@ -69,24 +68,24 @@ document.addEventListener('DOMContentLoaded', function() {
             cell.removeAttribute('data-step');
         }
         
-        // Then add the new class if provided
+       
         if (className) {
             cell.classList.add(className);
         }
     }
     
-    // Handle cell click event
+    
     function handleCellClick(row, col) {
-        // Don't allow clicking on obstacles
+       
         if (grid[row][col] === 1) {
             statusMessage.textContent = 'Cannot select obstacle cells. Try again.';
             return;
         }
         
-        // Clear any existing path
+       
         clearPath();
         
-        // Set start position if not set yet
+        
         if (startPos === null) {
             startPos = [row, col];
             updateCellClass(row, col, 'start');

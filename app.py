@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 app.secret_key = os.environ.get("SESSION_SECRET", "default_secret_key")
 
-# Define the grid (0 = free, 1 = obstacle)
+
 GRID = [
     [0, 0, 1, 0, 1, 1, 0, 0, 1, 0],
     [1, 0, 1, 0, 1, 0, 0, 1, 1, 0],
@@ -19,7 +19,7 @@ GRID = [
     [1, 1, 1, 1, 1, 1, 0, 1, 1, 0]
 ]
 
-# Directions for moving in 4 directions (up, down, right, left)
+
 DIRECTIONS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
 @app.route('/')
@@ -52,30 +52,30 @@ def iddfs(grid, start, goal):
             next_node = (nx, ny)
             
             if is_valid(grid, next_node) and next_node not in visited:
-                # Create a new path with this node
+            
                 new_path = path + [next_node]
                 
-                # Try searching from this node with reduced depth
+                
                 result = dls(next_node, depth - 1, visited.copy(), new_path)
                 
-                # If we found a result, return it
+
                 if result:
                     return result
         
-        # No path found from this node within depth limit
+     
         return None
 
-    # Start with depth = 0 and gradually increase
-    max_depth = len(grid) * len(grid[0])  # Max depth is the size of the grid
+  
+    max_depth = len(grid) * len(grid[0])  
     
     for depth in range(max_depth):
-        # Create a new set for visited nodes at each depth iteration
+       
         visited = set()
         result = dls(start, depth, visited, [start])
         if result:
             return result
     
-    # No path found within max depth
+   
     return None
 
 @app.route('/find_path', methods=['POST'])
