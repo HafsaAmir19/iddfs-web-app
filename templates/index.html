@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDDFS Robot Navigation</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container py-4">
+        <h1 class="text-center mb-4">IDDFS Robot Navigation</h1>
+        
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="card bg-dark">
+                    <div class="card-body">
+                        <h5 id="status-message" class="text-center mb-3">Click to mark Start and Goal</h5>
+                        
+                        <div class="grid-container">
+                            <!-- Y-axis coordinates -->
+                            <div class="y-coordinates">
+                                <div class="coord-label">9</div>
+                                <div class="coord-label">8</div>
+                                <div class="coord-label">7</div>
+                                <div class="coord-label">6</div>
+                                <div class="coord-label">5</div>
+                                <div class="coord-label">4</div>
+                                <div class="coord-label">3</div>
+                                <div class="coord-label">2</div>
+                                <div class="coord-label">1</div>
+                                <div class="coord-label">0</div>
+                            </div>
+                            
+                            <!-- Grid -->
+                            <div>
+                                <div id="grid" class="grid"></div>
+                                
+                                <!-- X-axis coordinates -->
+                                <div class="x-coordinates">
+                                    <div class="coord-label">0</div>
+                                    <div class="coord-label">1</div>
+                                    <div class="coord-label">2</div>
+                                    <div class="coord-label">3</div>
+                                    <div class="coord-label">4</div>
+                                    <div class="coord-label">5</div>
+                                    <div class="coord-label">6</div>
+                                    <div class="coord-label">7</div>
+                                    <div class="coord-label">8</div>
+                                    <div class="coord-label">9</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="legend mt-3">
+                            <div class="legend-item">
+                                <div class="legend-color free"></div>
+                                <span>Free Space</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color obstacle"></div>
+                                <span>Obstacle</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color start">S</div>
+                                <span>Start</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color goal">G</div>
+                                <span>Goal</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color path">1</div>
+                                <span>Path Step</span>
+                            </div>
+                        </div>
+                        
+                        <div class="controls text-center mt-4">
+                            <button id="findPathBtn" class="btn btn-primary me-2">Find Path</button>
+                            <button id="resetBtn" class="btn btn-secondary">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/grid.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+:root {
+    --free-color: #FAD7A0;
+    --obstacle-color: #654321;
+    --start-color: #5cb85c;
+    --goal-color: #0275d8;
+    --path-color: #000000;
+    --grid-border-color: #ccc;
+}
+
+.grid-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: repeat(10, 40px);
+    gap: 1px;
+    border: 1px solid var(--grid-border-color);
+}
+
+.cell {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.cell.free {
+    background-color: var(--free-color);
+    color: #333;
+}
+
+.cell.obstacle {
+    background-color: var(--obstacle-color);
+    color: #fff;
+}
+
+.cell.start {
+    background-color: var(--free-color);
+    position: relative;
+}
+
+.cell.start::after {
+    content: 'S';
+    position: absolute;
+    background-color: var(--start-color);
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.cell.goal {
+    background-color: var(--free-color);
+    position: relative;
+}
+
+.cell.goal::after {
+    content: 'G';
+    position: absolute;
+    background-color: var(--goal-color);
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.cell.path {
+    position: relative;
+}
+
+.cell.path::after {
+    content: attr(data-step);
+    position: absolute;
+    background-color: var(--path-color);
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.x-coordinates, .y-coordinates {
+    display: flex;
+    justify-content: space-around;
+}
+
+.x-coordinates {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    gap: 1px;
+    margin-top: 8px;
+}
+
+.y-coordinates {
+    display: grid;
+    grid-template-rows: repeat(10, 40px);
+    gap: 1px;
+    margin-right: 8px;
+    align-items: center;
+}
+
+.coord-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.legend-color.free {
+    background-color: var(--free-color);
+}
+
+.legend-color.obstacle {
+    background-color: var(--obstacle-color);
+}
+
+.legend-color.start {
+    background-color: var(--start-color);
+    color: white;
+}
+
+.legend-color.goal {
+    background-color: var(--goal-color);
+    color: white;
+}
+
+.legend-color.path {
+    background-color: var(--path-color);
+    color: white;
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+/* Path coordinates list styling */
+#pathCoordinates {
+    margin-top: 15px;
+    border: 1px solid var(--grid-border-color);
+}
+
+#pathCoordinates h6 {
+    color: #fff;
+}
+
+#pathCoordinates .list-group-item {
+    border-color: #444;
+    color: #fff;
+    padding: 5px 10px;
+    font-family: monospace;
+}
